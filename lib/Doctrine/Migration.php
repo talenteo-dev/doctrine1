@@ -347,7 +347,11 @@ class Doctrine_Migration
                     return $to;
                 }
             } else {
-                $this->_connection->commit();
+                try {
+                    $this->_connection->commit();
+                } catch (Exception $e) {
+
+                }
                 $this->setCurrentVersion($to);
                 return $to;
             }
